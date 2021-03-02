@@ -32,8 +32,7 @@ app.post('/adicionar-producto', function (req, res) {
         NewProd.categoria= req.body.categoria
         console.log(NewProd);
     if (NewProd.categoria == 2) {
-        const aplano = NewProd.reduce((acc, el) => acc.concat(el), [])
-        favoritos.push(...aplano)
+        favoritos.push(NewProd)
     }else{
         carrito.push(NewProd)
     }
@@ -41,17 +40,6 @@ app.post('/adicionar-producto', function (req, res) {
     res.redirect("/")
 })
 
-app.get('/carrito', function (req, res) {    
-    const id = req.query.id
-    const car = products.filter(x => x.id == id)
-    const planoc = car.reduce((acc, el) => acc.concat(el), [])
-    console.log(planoc);
-    carrito.push(...planoc);
-    res.redirect("/")    
-    const precios = carrito.map(x => x.precio)
-    const redSuma = precios.reduce((acc, el) => acc + el, 0)
-    subtotal = redSuma * carrito.length
-})
 
 
 app.listen(port, () => console.log(`Example app listening on port port!`))
