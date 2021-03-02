@@ -11,15 +11,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 var favoritos = []
-
 var carrito = []
-
 var subtotal = 0
 
 // rutas
 app.get('/', function (req, res) {
     var precios = carrito.map(x => x.precio * x.cantidad)
-    console.log(precios);
     var redSuma = precios.reduce((acc, el) => acc + el, 0)
     subtotal = redSuma
     res.render('main', {favoritos: favoritos, carrito: carrito, subtotal: subtotal})
@@ -38,18 +35,6 @@ app.post('/adicionar-producto', function (req, res) {
     }
 
     res.redirect("/")
-})
-
-app.get('/carrito', function (req, res) {    
-    const id = req.query.id
-    const car = products.filter(x => x.id == id)
-    const planoc = car.reduce((acc, el) => acc.concat(el), [])
-    console.log(planoc);
-    carrito.push(...planoc);
-    res.redirect("/")    
-    const precios = carrito.map(x => x.precio)
-    const redSuma = precios.reduce((acc, el) => acc + el, 0)
-    subtotal = redSuma * carrito.length
 })
 
 
