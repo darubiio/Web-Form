@@ -58,13 +58,13 @@
         <div class="card col mt-4 m-2 shadow" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title"><%=  carrito[i].nombre %></h5>
-            <span class="card-text"><%=  carrito[i].cantidad %> disponibles</span>
-            <span class="card-text">$ <%=  carrito[i].precio %></span>            
+            <span class="card-text"><%=  carrito[i].cantidad %> unidades</span>
+            <span class="card-text">$ <%=  carrito[i].precio %> c/u</span>            
             </div>
         </div>
     <% } %>
             
-            <p class='text-danger car-body'>Subtotal: <%= subtotal %> </p>
+            <p class='text-danger car-body'>Subtotal: $<%= subtotal %> </p>
         
         
         </div>        
