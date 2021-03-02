@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>WebForm</title>
+    <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,7 +42,9 @@
     </div>
     <div class='row'>
         <div class='col-6'>
-            <h5>Favoritos</h5>
+            <% if (favoritos.length > 0) { %>
+                <h5>Favoritos</h5>
+            <% } %>            
             <% for( let i = 0; i < favoritos.length; i++ ) { %>
         <div class="card mt-4 m-2 shadow" style="width: 18rem;">
         <div class="card-body">
@@ -53,7 +55,9 @@
     <% } %>
         </div>
         <div class='col-6'>
-            <h5>Carrito</h5>
+            <% if (favoritos.length > 0) { %>
+                <h5>Carrito</h5> 
+            <% } %>            
             <% for( let i = 0; i < carrito.length; i++ ) { %>
         <div class="card col mt-4 m-2 shadow" style="width: 18rem;">
         <div class="card-body">
