@@ -21,21 +21,20 @@ app.get('/', function (req, res) {
     subtotal = redSuma
     res.render('main', {favoritos: favoritos, carrito: carrito, subtotal: subtotal})
 })
+
 app.post('/adicionar-producto', function (req, res) {
     var NewProd = new Object()
         NewProd.nombre = req.body.nombre
-        NewProd.cantidad = req.body.cantidad
+        NewProd.cantidad = parseInt(req.body.cantidad)
         NewProd.precio= parseInt(req.body.precio)
         NewProd.categoria= req.body.categoria
-        console.log(NewProd);
     if (NewProd.categoria == 2) {
         favoritos.push(NewProd)
-    }else{
+    } else {
         carrito.push(NewProd)
     }
-
     res.redirect("/")
 })
 
 
-app.listen(port, () => console.log(`Example app listening on port port!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
