@@ -1,80 +1,79 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>WebForm</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-
-    <nav class="nav justify-content-center">
-      <a class="nav-link active" href="#">Web Form</a>
-    </nav>
     
-    <div class='row'>
-        <div class='col form-group'>
-            <form action="/adicionar-producto" method="POST">
+    <!-- Formulario -->
+    <div class="row justify-content-md-center mt-4">
+        <div class="col-6 form-group border rounded rounded-4 shadow">
+            <h2 class="nav-link active text-primary text-center" href="#"><u>Web Form</u></h2>
+            <form class="pb-3" action="/adicionar-producto" method="POST">
             <div class="mb-2 m-4">
-            <input type="text" class="form-control" name="nombre" id="exampleFormControlInput1" placeholder="Nombre">
+            <input type="text" class="form-control" name="nombre" id="exampleFormControlInput1" placeholder="Nombre" required>
             </div>
             <div class="mb-2 m-4">
-            <input type="number" class="form-control" name="cantidad" id="exampleFormControlInput1" placeholder="Cantidad">
+            <input type="number" class="form-control" name="cantidad" id="exampleFormControlInput1" placeholder="Cantidad" required>
             </div>
             <div class="mb-2 m-4">
-            <input type="number" class="form-control" name="precio" id="exampleFormControlInput1" placeholder="Precio">
+            <input type="number" class="form-control" name="precio" id="exampleFormControlInput1" placeholder="Precio" required>
             </div>            
             <div class="mb-2 m-4">
             <select class="form-select form-control" name="categoria" aria-label="Default select example">
-                <option selected>Seleccione Categoría</option>
+                <option selected disabled>Seleccione Categoría</option>
                 <option value="1">Carrito</option>
                 <option value="2">Favoritos</option>
                 </select>
             </div>
-            <button type="submit" class="btn">Enviar</button>
+            <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-primary ml-4">Agregar</button>
+            </div>
             </form>
         </div>
-
-
-    </div>
-    <div class='row'>
-        <div class='col-6'>
-            <% if (favoritos.length > 0) { %>
-                <h5>Favoritos</h5>
-            <% } %>            
-            <% for( let i = 0; i < favoritos.length; i++ ) { %>
-        <div class="card mt-4 m-2 shadow" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><%=  favoritos[i].nombre %></h5>
-            <span class="card-text">$ <%=  favoritos[i].precio %></span>            
-        </div>
-        </div>
-    <% } %>
-        </div>
-        <div class='col-6'>
-            <% if (favoritos.length > 0) { %>
-                <h5>Carrito</h5> 
-            <% } %>            
-            <% for( let i = 0; i < carrito.length; i++ ) { %>
-        <div class="card col mt-4 m-2 shadow" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><%=  carrito[i].nombre %></h5>
-            <span class="card-text"><%=  carrito[i].cantidad %> unidades</span>
-            <span class="card-text">$ <%=  carrito[i].precio %> c/u</span>            
-            </div>
-        </div>
-    <% } %>
-            
-            <p class='text-danger car-body'>Subtotal: $<%= subtotal %> </p>
-        
-        
-        </div>        
-
     </div>
     
+    <div class="row justify-content-center ml-4">        
+        <!--Favoritos-->
+        <div class="col-7 row">
+            <% if (favoritos.length > 0) { %>
+            <div class="col-5 border shadow border-2 m-2 rounded-4 rounded">            
+                <h5 class="p-3">Favoritos</h5>            
+                <% for( let i = 0; i < favoritos.length; i++ ) { %>
+                <div class="card mt-2 m-2 shadow" style="width: 21.5rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=  favoritos[i].nombre %></h5>
+                        <span class="card-text">$ <%=  favoritos[i].precio %></span>            
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        <% } %>            
+        
+        <!--Carrito-->
+        <% if (carrito.length > 0) { %>
+        <div class="col-6 border shadow m-2 rounded-4 rounded">            
+            <h5 class="p-3">Carrito</h5>             
+            <% for( let i = 0; i < carrito.length; i++ ) { %>
+            <div class="card mt-2 m-2 ml-4 shadow" style="width: 24.3rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><%=  carrito[i].nombre %></h5>
+                    <span class="card-text"><%=  carrito[i].cantidad %> unidades</span>
+                    <span class="card-text">$ <%=  carrito[i].precio %> c/u</span>            
+                </div>
+            </div>
+            <% } %>        
+            <p class="text-danger car-body border rounded p-2 shadow-sm"><u><strong>Subtotal: $<%= subtotal %> </strong></u></p>
+        </div>  
+        <% } %>
+        
+        </div>
+    </div>    
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
